@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core">
+    
+    <h:head>
+        <title>Listing Countries</title>
+        <h:outputStylesheet name="style.css" library="css"/>
+    </h:head>
+    <h:body>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputText value="Country" />
+            <h:inputText value="#{listCountriesBean.filterName}" />
+
+            <h:outputText value="Continent" />
+            <h:selectOneMenu value="#{listCountriesBean.filterContinent}" >
+                <f:selectItem itemValue="" itemLabel="" />
+                <f:selectItems value="#{singletonBean.continents}" />
+            </h:selectOneMenu>
+            
+            <h:commandLink value="Filter" action="#{listCountriesBean.filter}" />
+            <h:commandLink value="Create" action="new" />
+        </h:panelGrid>
+        <h1>Listing #{listCountriesBean.countries.size()} Countries</h1>
+        <h:dataTable value="#{listCountriesBean.countries}" 
+                     var="country" 
+                     styleClass="order-table"
+                     headerClass="table-header"
+                     rowClasses="table-odd-row,table-even-row">
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:link value="#{country.name}" outcome="show">
+                    <f:param name="countryCode" value="#{country.code}" />
+                </h:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Population</f:facet>
+                #{country.population}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Continent</f:facet>
+                #{country.continent}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Region</f:facet>
+                #{country.region}
+            </h:column>
+            <h:column>
+                <f:facet name="header"></f:facet>
+                <h:commandLink value="Delete" 
+                               action="#{listCountriesBean.removeCountry(country.code)}" 
+                               onclick="if (! confirm('Are you sure?')) return false"/>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+    </h:body>
+</html>

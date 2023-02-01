@@ -1,0 +1,54 @@
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core">
+    
+    <h:head>
+        <title>Country Details</title>
+        <h:outputStylesheet name="style.css" library="css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+        <f:metadata>
+            <f:viewParam name="countryCode" value="#{countryDetailBean.countryCode}" />
+            <f:event type="preRenderView" listener="#{countryDetailBean.init}" />
+        </f:metadata>
+
+        <h:panelGrid id="panelGrid" columns="2" cellpadding="3" cellspacing="1" columnClasses="left-column,right-column">
+            <h:outputText value="hashCode" />
+            <h:outputText value="#{countryDetailBean.hashCode()}"/>
+
+            <h:outputText value="Code" />
+            <h:outputText value="#{countryDetailBean.country.code}"/>
+
+            <h:outputText value="Name" />
+            <h:outputText value="#{countryDetailBean.country.name}"/>
+            
+            <h:outputText value="Continent" />
+            <h:outputText value="#{countryDetailBean.country.continent}"/>
+
+            <h:outputText value="Surface Area" />
+            <h:outputText value="#{countryDetailBean.country.surfaceArea}"/>
+            
+            <h:outputText value="Ind. Year" />
+            <h:outputText value="#{countryDetailBean.country.indepYear}"/>
+
+            <h:outputText value="GNP" />
+            <h:outputText value="#{countryDetailBean.country.gnp}"/>
+
+            <h:outputText value="Form of Government" />
+            <h:outputText value="#{countryDetailBean.country.governmentForm}"/>
+
+            <f:facet name = "footer">
+                <h:panelGroup>
+                    <h:commandLink value="Back" action="index" />
+                    <h:outputText value=" " />
+                    <h:commandLink value="Update" action="update" >
+                        <f:param name="countryCode" value="#{countryDetailBean.countryCode}" />
+                    </h:commandLink>
+                </h:panelGroup>
+            </f:facet>            
+            
+        </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>

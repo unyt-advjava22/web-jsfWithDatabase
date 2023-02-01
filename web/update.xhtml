@@ -1,0 +1,66 @@
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core">
+    
+    <h:head>
+        <title>Listing Countries</title>
+        <h:outputStylesheet name="style.css" library="css"/>
+    </h:head>
+    <h:body>
+    <h:form>
+        <h:outputText value="#{flash.confirmationMessage}"/> 
+        <h:panelGrid columns="2">
+            <h:outputText value="Hashcode" />
+            <h:outputText value="#{updateCountryBean.hashCode()}" />
+
+            <h:outputText value="Code" />
+            <h:inputText value="#{updateCountryBean.code}" required="true" requiredMessage="Code must be provided" readonly="true"/>
+
+            <h:outputText value="Code2" />
+            <h:inputText value="#{updateCountryBean.code2}" required="true" requiredMessage="Code2 must be provided"/>
+
+            <h:outputText value="Name" />
+            <h:inputText value="#{updateCountryBean.name}" required="true" requiredMessage="Name must be provided"/>
+
+            <h:outputText value="Continent" />
+            <h:selectOneMenu value="#{updateCountryBean.continent}" required="true" requiredMessage="Continent must be provided" >
+                <f:selectItem itemValue="" itemLabel="" />
+                <f:selectItems value="#{singletonBean.continents}" />
+            </h:selectOneMenu>
+
+            <h:outputText value="Region" />
+            <h:inputText value="#{updateCountryBean.region}" required="true" requiredMessage="Region must be provided"/>
+
+            <h:outputText value="Surface Area" />
+            <h:inputText value="#{updateCountryBean.surfaceArea}" required="true" requiredMessage="Surface area must be provided"/>
+
+            <h:outputText value="Independence Year" />
+            <h:inputText value="#{updateCountryBean.independenceYear}"/>
+
+            <h:outputText value="Population" />
+            <h:inputText value="#{updateCountryBean.population}" required="true" requiredMessage="Population must be provided"/>
+
+            <h:outputText value="Life Expectancy" />
+            <h:inputText value="#{updateCountryBean.lifeExp}" />
+
+            <h:outputText value="GNP" />
+            <h:inputText value="#{updateCountryBean.gnp}"/>
+
+            <h:outputText value="Local Name" />
+            <h:inputText value="#{updateCountryBean.localName}" required="true" requiredMessage="Local name must be provided"/>
+
+            <h:outputText value="Government Form" />
+            <h:inputText value="#{updateCountryBean.governForm}" required="true" requiredMessage="Form of Government must be provided"/>
+            
+            <h:commandLink value="Update" 
+                           action="#{updateCountryBean.update}" 
+                           onclick="if (! confirm('Are you sure?')) return false" />
+            <h:commandLink value="Index" action="index" />
+            <h:link value="Back" outcome="show">
+                <f:param name="countryCode" value="#{updateCountryBean.code}" />
+            </h:link>
+
+        </h:panelGrid>
+    </h:form>
+    </h:body>
+</html>
